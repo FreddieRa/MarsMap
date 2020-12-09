@@ -40,8 +40,6 @@ normals.save(directory + "/nm.png")
 shaded = lightmap.lightmap(normals, colors, s.light, s.ambientPercentage)
 shaded.save(directory + "/map.png")
 
-
-
 scaledpng = topng.to_png(scaled)
 scaledpng.save(directory + "/hm.png")
 

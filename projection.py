@@ -4,6 +4,7 @@ import math
 import settings as s
 import sys
 import topng
+from progress import ProgressBar
 
 def cylToLatLon(x, y, scale):
     long = x / (128 / scale)
@@ -63,15 +64,19 @@ def projectmap(hm, scale):
     rwidth, rheight = img.size
     R = rwidth / 6.1
 
+    prog = ProgressBar(height)
+
+    print("\nProjection Map:")
+
     for y in range(0, height):
-        if y % (height // 100) == 0:
-            print("pm", y / height * 100)
+        prog.show(y)
         for x in range(0, width):
             value = hm.getpixel((x, y))
             (lat, long) = cylToLatLon(x - width / 2, y, scale)
             (mapx, mapy) = robinson(lat, long, R)
 
             img.putpixel((int(mapx + rwidth / 2), int(mapy + rheight / 2)), value)
+
 
     return img
 

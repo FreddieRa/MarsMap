@@ -3,7 +3,7 @@ from colour import Color
 import vectormath as vmath
 import settings as s
 import sys
-
+from progress import ProgressBar
 
 def sobel(x, y, hm, sobelscale):
     s = []
@@ -33,9 +33,12 @@ def normalmap(hm, sobelscale):
 
     nm = Image.new('RGBA', (width, height), color=(0, 0, 0, 0))
 
+    prog = ProgressBar(height)
+
+    print("\nNormal Map:")
+
     for y in range(0, height):
-        if y % (height // 100) == 0:
-            print("nm", y / height * 100)
+        prog.show(y)
         for x in range(0, width):
             value = hm.getpixel((x, y))
             if value != -2147483648:

@@ -3,7 +3,7 @@ from colour import Color
 import settings as s
 import sys
 import topng
-
+from progress import ProgressBar
 
 def setpixel(x, y, value):
     img.putpixel((x, y), value)
@@ -15,9 +15,12 @@ def heightmap(hm, scale):
 
     img = Image.new('I', (width // SCALER, height // SCALER), color='red')
 
+    prog = ProgressBar(height)
+
+    print("\nHeight Map:")
+
     for y in range(0, height, SCALER):
-        if y % (height // 100) == 0:
-            print("hm", y / height * 100)
+        prog.show(y)
         for x in range(0, width // 2, SCALER):
             value = hm.getpixel((x, y))
             rightVal = hm.getpixel((x + width // 2, y))

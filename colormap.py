@@ -2,6 +2,7 @@ from PIL import Image, ImageDraw
 from colour import Color
 import settings as s
 import sys
+from progress import ProgressBar
 
 def ctot(c):
     return int(c.red * 255), int(c.green * 255), int(c.blue * 255)
@@ -36,14 +37,16 @@ def colormap(hm, gradient, smoothness):
         sublist = list(Color(color).range_to(Color(nextColor), end))
         colorlist += sublist
 
+    prog = ProgressBar(height)
+
+    print("\nColor Map:")
+
     for y in range(0, height):
-        if y % (height // 100) == 0:
-            print("cm", y / height * 100)
+        prog.show(y)
         for x in range(0, width):
             value = hm.getpixel((x, y))
             if value != -2147483648:
                 setpixel(x, y, value, colorlist, img)
-
     return img
 
 

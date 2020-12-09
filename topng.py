@@ -1,6 +1,7 @@
 from PIL import Image, ImageDraw
 from colour import Color
 import sys
+from progress import ProgressBar
 
 
 def setpixel(x, y, value, img):
@@ -15,12 +16,14 @@ def to_png(tif):
 
     img = Image.new('RGBA', (width, height), color=(0, 0, 0, 0))
 
+    prog = ProgressBar(height-1)
+
+    print("\nTo PNG:")
     for y in range(0, height - 1):
-        progress = int((y / height) * 100)
-        if y % (height // 100) == 0:
-            print("to png", y / height * 100)
+        prog.show(y)
         for x in range(0, width - 1):
             value = tif.getpixel((x, y))
             setpixel(x, y, value, img)
 
+    print("\n")
     return img

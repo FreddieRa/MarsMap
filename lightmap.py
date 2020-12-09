@@ -3,6 +3,7 @@ from colour import Color
 import vectormath as vmath
 import settings as s
 import sys
+from progress import ProgressBar
 
 def lightmap(nm, cm, light, ambient):
     width, height = nm.size
@@ -14,9 +15,12 @@ def lightmap(nm, cm, light, ambient):
 
     shaded = Image.new('RGBA', (width, height), color=(0, 0, 0, 0))
 
+    prog = ProgressBar(height)
+
+    print("\nLight Map:")
+
     for y in range(0, height):
-        if y % (height // 100) == 0:
-            print("lm", y / height * 100)
+        prog.show(y)
         for x in range(0, width):
             (cr, cg, cb, ca) = cm.getpixel((x, y))
             (r,g,b,a) = nm.getpixel((x, y))
@@ -32,7 +36,6 @@ def lightmap(nm, cm, light, ambient):
                 cg = int(illumination * cg)
                 cb = int(illumination * cb)
                 shaded.putpixel((x, y), (cr, cg, cb, ca))
-
     return shaded
 
 if __name__ == '__main__':
