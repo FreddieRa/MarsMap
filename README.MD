@@ -1,10 +1,37 @@
 # Mars Relief Map Generator
 
-Download the Digital Elevation Model made by the measurements of the Mars Global Surveyor [here](https://astrogeology.usgs.gov/search/details/Mars/GlobalSurveyor/MOLA/Mars_MGS_MOLA_DEM_mosaic_global_463m/cub), and save it as `heightmap.tif`.
+## Installation
+
+```bash
+git clone https://github.com/FreddieRa/MarsMap.git
+cd ./MarsMap/
+sudo apt-get update
+sudo apt-get install python3-pip
+pip3 install -r requirements.txt
+wget https://planetarymaps.usgs.gov/mosaic/Mars_MGS_MOLA_DEM_mosaic_global_463m.tif -O height map.tif
+```
+
+## Config
 
 In `settings.py` you can adjust scale, color gradient, and lighting settings.
 
-Running `python map.py $directory` will then start generating the map. Rendering consists of a five step process. First the original heightmap is downscaled, since usually we don't need such a high resolution. Then the map is reprojected to the [Robinson projection](https://xkcd.com/977/). The third step is the generation of a color map. Based on the height data a color is picked from the gradient defined in the settings. After this a normal map is generated from the reprojected heightmap. Combining the normal map and the color map, lightmap will provide shading to generate the final product.
+ - `SCALE` - Defines the resolution of the map. Smaller numbers (e.g. < 10) will give a lot mire detail but take longer to render.
+ - `smoothness` - I don't really know.
+ - `sobelScale` - Defines how "smooth" to draw the map (i.e. how much of an impact the heightmap has).
+
+## Running
+
+To generate the map, run the following command:
+`python map.py --dir [output directory] --name [name of file] --scale [scale]`
+
+All of the parameters are optional, and will default to:
+`python map.py --dir ./ --name map.png`
+
+where the scale used is whatever is defined in `settings.py`.
+
+## Process
+
+Rendering consists of a five step process. First the original heightmap is downscaled, since usually we don't need such a high resolution. Then the map is reprojected to the [Robinson projection](https://xkcd.com/977/). The third step is the generation of a color map. Based on the height data a color is picked from the gradient defined in the settings. After this a normal map is generated from the reprojected heightmap. Combining the normal map and the color map, lightmap will provide shading to generate the final product.
 
 In the specified `$directory` the following files are generated:
 

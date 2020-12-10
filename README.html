@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Mars Relief Map Generator</title>
+        <style>
+</style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+        
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="mars-relief-map-generator">Mars Relief Map Generator</h1>
+<h2 id="installation">Installation</h2>
+<pre><code class="language-bash"><div>git <span class="hljs-built_in">clone</span> https://github.com/FreddieRa/MarsMap.git
+<span class="hljs-built_in">cd</span> ./MarsMap/
+sudo apt-get update
+sudo apt-get install python3-pip
+pip3 install -r requirements.txt
+wget https://planetarymaps.usgs.gov/mosaic/Mars_MGS_MOLA_DEM_mosaic_global_463m.tif -O height map.tif
+</div></code></pre>
+<h2 id="config">Config</h2>
+<p>In <code>settings.py</code> you can adjust scale, color gradient, and lighting settings.</p>
+<ul>
+<li><code>SCALE</code> - Defines the resolution of the map. Smaller numbers (e.g. &lt; 10) will give a lot mire detail but take longer to render.</li>
+<li><code>smoothness</code> - I don't really know.</li>
+<li><code>sobelScale</code> - Defines how &quot;smooth&quot; to draw the map (i.e. how much of an impact the heightmap has).</li>
+</ul>
+<h2 id="running">Running</h2>
+<p>To generate the map, run the following command:
+<code>python map.py --dir [output directory] --name [name of file] --scale [scale]</code></p>
+<p>All of the parameters are optional, and will default to:
+<code>python map.py --dir ./ --name map.png</code></p>
+<p>where the scale used is whatever is defined in <code>settings.py</code>.</p>
+<h2 id="process">Process</h2>
+<p>Rendering consists of a five step process. First the original heightmap is downscaled, since usually we don't need such a high resolution. Then the map is reprojected to the <a href="https://xkcd.com/977/">Robinson projection</a>. The third step is the generation of a color map. Based on the height data a color is picked from the gradient defined in the settings. After this a normal map is generated from the reprojected heightmap. Combining the normal map and the color map, lightmap will provide shading to generate the final product.</p>
+<p>In the specified <code>$directory</code> the following files are generated:</p>
+<ul>
+<li><code>hm.tif</code> and <code>hm.png</code>, the heightmap, both in TIF to preserve information for the next step and as a PNG to allow easy viewing.</li>
+<li><code>pm.tif</code> and <code>pm.png</code>, the reprojected heightmap.</li>
+<li><code>cm.png</code>, the color map.</li>
+<li><code>nm.png</code>, the normalmap.</li>
+<li><code>map.png</code>, the final shaded map.</li>
+</ul>
+<p>To combine everything in a nice map, <code>annotations.svg</code> has the names of many different features and an overlay with lines showing latitudes and longitudes.</p>
+<h1 id="license">License</h1>
+<p>All graphics files in this project are licensed under the CC-BY-SA 3.0.</p>
+<p>All code in this project is licensed under the GPL version 3 or (at your option) any later version.</p>
+
+    </body>
+    </html>
