@@ -1,4 +1,4 @@
-results/*
+# results/*
 *.tif
 *__pycache__/
 *.svg
