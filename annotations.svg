@@ -17,7 +17,7 @@
    id="svg8"
    inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="annotations.svg"
-   inkscape:export-filename="/home/pieter/Coding/python/MarsKaart/exports/map-ann-4k.png"
+   inkscape:export-filename="/Users/freddier/Documents/GitHub/MarsMap/exports/map-ann-4k.png"
    inkscape:export-xdpi="50"
    inkscape:export-ydpi="50">
   <defs
@@ -117,7 +117,7 @@
        height="1189.3848"
        x="-28.225952"
        y="-94.527023"
-       inkscape:export-filename="/home/pieter/Coding/python/MarsKaart/exports/map-ann-4k.png"
+       inkscape:export-filename="/Users/freddier/Documents/GitHub/MarsMap/exports/map-ann-4k.png"
        inkscape:export-xdpi="48.91"
        inkscape:export-ydpi="48.91" />
   </g>
@@ -134,7 +134,7 @@
        style="opacity:1;fill:#141414;fill-opacity:1;stroke:#1e1e1e;stroke-width:1.20000005;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc" />
-    <g
+    <!-- <g
        id="g4767"
        transform="translate(15.657337,6.010273e-5)"
        inkscape:export-filename="/home/pieter/g4767.png"
@@ -633,7 +633,7 @@
              style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Latin Modern Sans';-inkscape-font-specification:'Latin Modern Sans';text-align:center;text-anchor:middle;fill:#d7d1ae;fill-opacity:1;stroke-width:0.26458332"
              id="tspan1321-4-6-13-32-8">Elevation (meters)</tspan></text>
       </g>
-    </g>
+    </g> -->
     <g
        id="g3109"
        transform="translate(0.30964111,0.89296875)">
@@ -945,8 +945,8 @@
      sodipodi:insensitive="true"
      transform="translate(0,50)">
     <image
-       sodipodi:absref="/home/pieter/Coding/python/MarsKaart/twox2/map.png"
-       xlink:href="twox2/map.png"
+       sodipodi:absref="/Users/freddier/Documents/GitHub/MarsMap/results/map.png"
+       xlink:href="results/map.png"
        y="-41.424381"
        x="-82.848747"
        id="image3051"
@@ -963,8 +963,8 @@
      sodipodi:insensitive="true"
      transform="translate(0,50)">
     <image
-       sodipodi:absref="/home/pieter/Coding/python/MarsKaart/twox2/map.png"
-       xlink:href="twox2/map.png"
+       sodipodi:absref="/Users/freddier/Documents/GitHub/MarsMap/results/map.png"
+       xlink:href="results/map.png"
        width="2165.5103"
        height="1082.7551"
        preserveAspectRatio="none"
