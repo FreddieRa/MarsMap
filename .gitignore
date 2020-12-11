@@ -1,5 +1,6 @@
-# results/*
 *.tif
 *__pycache__/
 *.svg
 lightmaps/*
+poster.png
+results/*
