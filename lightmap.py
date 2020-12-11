@@ -1,9 +1,13 @@
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFile
 from colour import Color
 import vectormath as vmath
 import settings as s
 import sys
+import multiprocessing
 from progress import ProgressBar
+
+
+
 
 def lightmap(nm, cm, light, ambient):
     width, height = nm.size
@@ -43,5 +47,15 @@ if __name__ == '__main__':
     nm = Image.open(directory + "/nm.png")
     cm = Image.open(directory + "/cm.png")
 
-    image = lightmap(nm, cm, s.light, s.ambientPercentage)
-    image.save(directory + "/map.png")
+    ImageFile.LOAD_TRUNCATED_IMAGES = True
+
+    def lit(x):
+        light = vmath.Vector3(1, x, x).normalize()
+        image = lightmap(nm, cm, light, s.ambientPercentage)
+        image.save(directory + "/map"+str(x)+".png")
+    
+    print("About to calculate them all")
+
+    for i in range(-30, 30):
+        lit(i/10)
+
