@@ -2,7 +2,7 @@ import sys
 
 class ProgressBar():
     def __init__(self, total, barLength=20):
-        self.__total = total
+        self.__total = total-1
         self.__barLength = barLength
         self.__current = 0
         

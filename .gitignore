@@ -4,3 +4,6 @@
 lightmaps/*
 poster.png
 results/*
+exports/*.png
+exports/*.xcf
+poster2.png
